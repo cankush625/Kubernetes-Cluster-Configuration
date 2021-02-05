@@ -66,7 +66,10 @@
     remote_src: yes
 
 - name: Change ownership of /.kube/config
-  command: chown $(id -u):$(id -g) $HOME/.kube/config
+  file:
+    path: $HOME/.kube/config
+    owner: ec2-user
+    group: ec2-user
 
 - name: Create a token to join the slave nodes
   command: kubeadm token create --print-join-command
