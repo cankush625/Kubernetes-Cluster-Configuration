@@ -26,7 +26,7 @@
     gpgcheck: no
   register: kuberepo
 
-- name:
+- name: Install kubelet, kubeadm and kubectl packages
   package:
     name: "{{ packages }}"
     state: present
