@@ -61,9 +61,9 @@
 
 - name: Copy kubernetes admin.conf file to /.kube/
   copy:
-    src: /etc/kubernetes/admin.conf
+    src:  /etc/kubernetes/admin.conf
     dest: $HOME/.kube/config
-    force: yes
+    remote_src: yes
 
 - name: Change ownership of /.kube/config
   command: chown $(id -u):$(id -g) $HOME/.kube/config
