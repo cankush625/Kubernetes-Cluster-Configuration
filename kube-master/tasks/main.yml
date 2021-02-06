@@ -78,4 +78,15 @@
 - name: Print the command to join the slave nodes
   debug: 
     var: join_command.stdout_lines
-  
+
+- name: Copy kube-flannel.yml to master node
+  template:
+    src: kube-flannel.yml
+    dest: $HOME/kube-flannel.yml
+ 
+- name: Install CNI (Flannel)
+  command: kubectl apply -f $HOME/kube-flannel.yml
+
+
+  #- name: Update config file of flannel
+
