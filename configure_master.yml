@@ -1,0 +1,6 @@
+- hosts: kube_master
+  roles:
+    - role: kube-master
+      pod_network_cidr: 10.240.0.0/16
+      owner: ec2-user
+      group: ec2-user
