@@ -1,0 +1,4 @@
+- hosts: kube_slave
+  roles:
+    - role: kube-slave
+      kube_join_command: "kubeadm join <YOUR_KUBE_MASTER_NODE_PRIVATE_IP>:6443 --token <YOUR_TOKEN>     --discovery-token-ca-cert-hash <YOUR_DISCOVERY_TOKEN_CERT_HASH> "
