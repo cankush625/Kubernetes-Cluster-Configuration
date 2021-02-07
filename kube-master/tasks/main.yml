@@ -80,13 +80,16 @@
     var: join_command.stdout_lines
 
 - name: Copy kube-flannel.yml to master node
-  template:
-    src: kube-flannel.yml
+  get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     dest: $HOME/kube-flannel.yml
+
+- name: Set network in the $HOME/kube-flannel.yml file
+  lineinfile:
+    path: $HOME/kube-flannel.yml
+    regexp: '\"Network\":*'
+    line: "      \"Network\": \"{{ pod_network_cidr }}\","
  
 - name: Install CNI (Flannel)
   command: kubectl apply -f $HOME/kube-flannel.yml
-
-
-  #- name: Update config file of flannel
 
