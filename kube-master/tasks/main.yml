@@ -5,6 +5,38 @@
     name: docker
     state: present
   register: dockerinstall
+  when: ansible_distribution == "Amazon"
+
+- name: Configure yum for docker
+  yum_repository:
+    name: "docker_repo"
+    description: Yum repo for docker
+    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+    gpgcheck: no
+  when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
+
+- name: Install docker on RedHat
+  package:
+    name: "docker-ce-18.06.3.ce-3.el7.x86_64"
+    state: present
+  register: dockerinstall
+  when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
+
+- name: Install Python
+  package:
+    name: python3
+    state: present
+  when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
+
+- name: Install Docker sdk for python
+  pip:
+    name: docker
+  when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
+
+- name: Create /etc/docker directory
+  file:
+    path: /etc/docker
+    state: directory
 
 - name: Update docker driver to systemd
   copy:
