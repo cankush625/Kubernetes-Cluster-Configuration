@@ -1,1 +1,3 @@
-../configure_master.yml
+*.retry
+*/__pycache__
+*.pyc
