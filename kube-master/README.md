@@ -1,38 +1,47 @@
-Role Name
+kube-master
 =========
 
-A brief description of the role goes here.
+Ansible role for configuring Kubernetes master node.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+OS: Amazon Linux 2, RHEL8 <br>
+CPU: 2 Cores <br>
+RAM: 2GiB
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable                | Required | Default |Comments                                 |
+|-------------------------|----------|---------|-----------------------------------------|
+| pod_network_cidr        | yes      |         | pod_network_cidr: 10.240.0.0/16         |
+| owner                   | yes      |         | owner: ec2-user                         |
+| group                   | yes      |         | group: ec2-user                         |
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Once you had configured the K8s master node using this role, you required to configure the slave nodes inorder to create a K8s cluster. I had published a role <b>kube-slave</b> for configuring slave nodes on Ansible Galaxy. You can find it [here]().
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+The example playbook below will show how to use this role:
 
-    - hosts: servers
+    - hosts: kube_master
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: kube-master
+          pod_network_cidr: 10.240.0.0/16
+          owner: ec2-user
+          group: ec2-user
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+[Ankush Chavan](https://www.linkedin.com/in/ankushchavan)

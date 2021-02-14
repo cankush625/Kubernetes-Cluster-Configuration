@@ -2,14 +2,17 @@ galaxy_info:
   role_name: kube_master
   author: Ankush Chavan
   description: Configure the Kubernetes master node
-  license: license (GPL-2.0-or-later, MIT)
+  license: MIT
 
   min_ansible_version: 2.9
 
   platforms:
-  - name: Amazon Linux 2
-    versions:
-      - all
+    - name: Amazon Linux 2
+      versions:
+        - all
+    - name: RedHat Enterprise Linux
+      versions:
+        - 8
 
   galaxy_tags:
     - kubernetes
@@ -18,6 +21,6 @@ galaxy_info:
     - cluster
     - master
     - ec2
+    - rhel8
 
 dependencies: []
-  
