@@ -1,4 +1,4 @@
-kube-master
+kube_master
 =========
 
 Ansible role for configuring Kubernetes master node.
@@ -13,7 +13,7 @@ RAM: 2GiB
 Role Variables
 --------------
 
-| Variable                | Required | Default |Comments                                 |
+| Variable                | Required | Default |Example Variable                         |
 |-------------------------|----------|---------|-----------------------------------------|
 | pod_network_cidr        | yes      |         | pod_network_cidr: 10.240.0.0/16         |
 | owner                   | yes      |         | owner: ec2-user                         |
@@ -22,7 +22,7 @@ Role Variables
 Dependencies
 ------------
 
-Once you had configured the K8s master node using this role, you required to configure the slave nodes inorder to create a K8s cluster. I had published a role <b>kube-slave</b> for configuring slave nodes on Ansible Galaxy. You can find it [here]().
+No any dependency
 
 Example Playbook
 ----------------
@@ -31,7 +31,7 @@ The example playbook below will show how to use this role:
 
     - hosts: kube_master
       roles:
-        - role: kube-master
+        - role: kube_master
           pod_network_cidr: 10.240.0.0/16
           owner: ec2-user
           group: ec2-user
