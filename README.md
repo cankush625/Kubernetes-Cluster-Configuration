@@ -12,6 +12,16 @@ kube_slave
 
 This is the role for configuring Kubernetes slave node. You can find more information about it in the kube_slave/README.md file.
 
+configure_master.yml
+--------------------
+
+This is the example playbook for using kube_master role
+
+configure_slave.yml
+-------------------
+
+This is the example playbook for using kube_slave role
+
 License
 -------
 MIT
